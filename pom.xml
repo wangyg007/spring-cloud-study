@@ -7,6 +7,8 @@
     <groupId>com.kone</groupId>
     <artifactId>spring-cloud-study</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>spring-cloud-study</name>
+    <description>spring-cloud-study</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -14,6 +16,11 @@
         <version>2.0.3.RELEASE</version>
         <relativePath/>
     </parent>
+
+    <modules>
+        <module>eureka-server</module>
+        <!--<module>service-hi</module>-->
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
