@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @time 2020/4/13 21:01
  * @note
  **/
+//被调用的服务名
 @FeignClient(value = "service-demo-i")
 public interface FeginInterfaceTest {
 
+    //被调用路径
     @RequestMapping(value = "/hi/home",method = RequestMethod.GET)
     String getHome(@RequestParam String name);
 
