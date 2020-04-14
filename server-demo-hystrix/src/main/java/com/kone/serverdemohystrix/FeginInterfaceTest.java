@@ -1,4 +1,4 @@
-package com.kone.serverdemoii;
+package com.kone.serverdemohystrix;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @note
  **/
 //被调用的服务名
-@FeignClient(value = "service-demo-client")
+@FeignClient(value = "service-demo-client",fallback = HiHystrix.class)
 public interface FeginInterfaceTest {
 
     //被调用路径

@@ -9,9 +9,9 @@
     </parent>
 
     <groupId>com.kone</groupId>
-    <artifactId>server-demo-feign</artifactId>
+    <artifactId>server-demo-ribbon</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>server-demo-ii</name>
+    <name>server-demo-ribbon</name>
     <description>Demo project for Spring Boot</description>
 
 
@@ -28,9 +28,10 @@
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
         </dependency>
     </dependencies>
+
 
     <build>
         <plugins>
