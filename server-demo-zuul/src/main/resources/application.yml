@@ -1,0 +1,23 @@
+
+server:
+  port: 8760
+
+spring:
+  application:
+    name: server-demo-zuul
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+zuul:
+  routes:
+    server-client:
+      path: /server-client/**
+      serviceId: SERVICE-DEMO-CLIENT
+    server-feign:
+      path: /server-feign/**
+      serviceId: SERVICE-DEMO-FEIGN
+    server-hystrix:
+      path: /server-hystrix/**
+      serviceId: SERVICE-DEMO-HYSTRIX

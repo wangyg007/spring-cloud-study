@@ -23,6 +23,7 @@
         <module>server-demo-feign</module>
         <module>server-demo-hystrix</module>
         <module>server-demo-ribbon</module>
+        <module>server-demo-zuul</module>
         <!--<module>service-hi</module>-->
     </modules>
 
