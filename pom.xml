@@ -24,6 +24,7 @@
         <module>server-demo-hystrix</module>
         <module>server-demo-ribbon</module>
         <module>server-demo-zuul</module>
+        <module>server-demo-gateway</module>
         <!--<module>service-hi</module>-->
     </modules>
 
