@@ -6,7 +6,36 @@ spring:
   application:
     name: server-demo-gateway
 
+  cloud:
+    gateway:
+      routes:
+        - id: test_route
+          uri: https://data-permisssion.shenzhenpoly.com/dataManage/receivable
+          order: 2
+          predicates:
+            - Path=/service-demo-client/**
+          filters:
+            - AddResponseHeader=hello, Gateway
+
+
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+
+ribbon:
+  eager-load:
+    enabled: true
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 80000

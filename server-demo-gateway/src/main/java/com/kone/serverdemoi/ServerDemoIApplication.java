@@ -3,10 +3,7 @@ package com.kone.serverdemoi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.gateway.route.RouteLocator;
-import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,15 +25,41 @@ public class ServerDemoIApplication {
     }
 
 
-    @Bean
-    public RouteLocator testRoutes(RouteLocatorBuilder builder){
-        return builder.routes()
-                .route(p->p
-                        .path("/get")
-                        .filters(f->f.addRequestHeader("token","helloworld"))
-                        .uri("http://httpbin.org:80"))
+    /**
+     * egg. 基于类配置，也可基于配置文件
+     * 在上面的代码中，我们使用了另外一个router，该router使用host去断言请求是否进入该路由，当请求的host有“*.hystrix.com”，
+     * 都会进入该router，该router中有一个hystrix的filter,该filter可以配置名称、和指向性fallback的逻辑的地址，
+     * 比如本案例中重定向到了“/fallback”。
+     * @param builder
+     * @return
+     */
+//    @Bean
+//    public RouteLocator testRoutes(RouteLocatorBuilder builder){
+//        return builder.routes()
+//                .route(p->p
+//                        .path("/get")
+//                        .filters(f->f.addRequestHeader("token","helloworld"))
+//                        .uri("https://www.baidu.com/"))
+//                .route(
+//                        p->p
+//                                .host("*.hystrix.com")
+//                                .filters(f->f
+//                                        .hystrix(config -> config
+//                                                .setName("mycmd")
+//                                                .setFallbackUri("foward:/fallback")))
+//                                .uri("http://httpbin.org:80")
+//                )
+//                .build();
+//    }
 
-                .build();
-    }
+//
+//    /**
+//     * Mono是一个Reactive stream，对外输出一个“fallback”字符串。
+//     * @return
+//     */
+//    @RequestMapping("/fallback")
+//    public Mono<String> fallback(){
+//        return Mono.just("fallback");
+//    }
 
 }
