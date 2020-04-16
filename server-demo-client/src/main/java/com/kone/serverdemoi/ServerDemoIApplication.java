@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableEurekaClient
 @RestController
 @RefreshScope
-@RequestMapping("/hi")
+@RequestMapping("/")
 public class ServerDemoIApplication {
 
     public static void main(String[] args) {

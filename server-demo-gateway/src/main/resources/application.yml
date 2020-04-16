@@ -8,15 +8,26 @@ spring:
 
   cloud:
     gateway:
-      routes:
-        - id: test_route
-          uri: https://data-permisssion.shenzhenpoly.com/dataManage/receivable
-          order: 2
-          predicates:
-            - Path=/service-demo-client/**
-          filters:
-            - AddResponseHeader=hello, Gateway
+      discovery:
+        locator:
+          # true表明gateway开启服务注册和发现的功能,自动通过服务名给其他注册的服务创建router
+          # 对于服务service-demo-client，可以这样访问转发 http://192.168.3.27:8767/service-demo-client/home?name=afafafaf
+          enabled: false
+          #是将请求路径上的服务名配置为小写（因为服务注册的时候，向注册中心注册时将服务名转成大写的了），
+          lower-case-service-id: true
 
+      #自定义router,同时将spring.cloud.gateway.discovery.locator.enabled改为false，如果不改的话,上面自动创建的router也可以用
+      routes:
+        - id: service-demo-client
+          #eurelka服务名称
+          uri: lb://service-demo-client
+          #自定义断言路径，符合条件路径转发上面服务
+          predicates:
+            - Path=/test/**
+          #用StripPrefix的filter 在转发之前将/test去掉,转发的服务上下文路径跟这个一样就不用去掉
+          filters:
+            - StripPrefix=1
+          #上例访问方式:http://192.168.3.27:8767/test/home?name=hello
 
 eureka:
   client:
